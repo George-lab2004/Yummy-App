@@ -1,0 +1,232 @@
+:root{
+    --h2-font:"Rubik", sans-serif;
+    --p-font:"Lora", serif;
+    --main-color: #17A2B8;
+    --bg-color: #22323C;
+}
+h1, h2, h3, h4{
+    font-family: var(--h2-font);
+}
+p{
+    font-family: var(--p-font);
+}
+span{
+    font-family:  Arial, Helvetica, sans-serif;
+}
+/* Start header */
+.open {
+    position: fixed;
+    height: 100vh;
+    z-index: 10;
+    width: 275px;
+    left: -275px;
+    top: 0;
+    background-color: #fff;
+    transition: left 0.3s ease;
+}
+
+.openIcon {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    cursor: pointer;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+@media screen and (max-width:1000px) {
+    .openIcon {
+        opacity: 0.5;
+    }
+    .openIcon:hover {
+        opacity: 1;
+    }
+}
+.slide-top {
+	-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.openIcon .fas {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+.active a {
+    color: rgb(19, 80, 19) !important;
+}
+/* End header */
+/* Start Section Search */
+
+.col-md-3 .layer {
+    position: absolute;
+    inset: 0;
+    left: 12px;
+    margin-top: 12px;
+    height: 310px;
+    width: 306px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(244, 244, 243, 0.9); /* Adjust opacity for better visibility */
+    opacity: 0;
+    transform: translateY(300px); /* Initial position is 30px below */
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+
+}
+
+.col-md-3:hover .layer {
+    opacity: 1;
+    transform: translateY(0); 
+    overflow: hidden;
+}
+@keyframes slideTop {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Start Loader */
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000; /* Ensure it is above other content */
+    font-size: 3em; /* Size of the spinner */
+    color: #007bff; /* Color of the spinner */
+}
+/* Start Details Section */
+#Details{
+    background-color: #27282B;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding-left: 100px;
+}
+#Details .col-md-8{
+    font-family: var(--main-font);
+
+}
+#Details h1 {
+    font-weight: 500;
+    position: relative;
+
+}
+#Details .col-md-8 p{
+    display: -webkit-box;
+    -webkit-line-clamp : 14; 
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+text-overflow: ellipsis;
+    max-height: 21em; 
+    line-height: 1.5em; 
+}
+
+#Recipe span{
+    background-color: #CFF4FC;
+    color: #055160;
+}
+
+#Tags span{
+    border-color: #F8D7DA;
+    background-color: #F8D7DA;
+    color: #A22029;
+}
+/* End Details Section */
+/* Start Categories */
+
+.title{
+    padding-bottom: 200px;
+}
+/* Start Area */
+#Area .col-md-3{
+    cursor: pointer;
+    transition: all 0.5s;
+}
+#Area .col-md-3 .fa-4x{
+
+transition: all 0.5s;
+}
+#Area .col-md-3:hover .fa-4x{
+  color: #c59e11;
+
+    }
+    /* Start Ingred */
+
+    #Ingred .col-md-3{
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+    #Ingred .col-md-3 .fa-4x{
+    
+    transition: all 0.5s;
+    }
+    #Ingred .col-md-3:hover .fa-4x{
+    color: #c59e11;
+        }
+        /* Start Contact */
+
+        #contact .container {
+            width: 300px;
+            height: 500px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+        
+        #contact h2 {
+            color: var(--main-color);
+            font-size: 40px;
+            max-width: 50vw;
+            font-weight: 500;
+            font-family: "Titillium Web", sans-serif;
+        }
+        #contact .forms input,
+        #contact .forms textarea {
+        background-color: var(--bg-color);
+        
+        }
+        #contact .forms input::placeholder {
+            color: #B6B6B6;
+        }
+        #contact .forms input:focus,
+        #contact .forms input:active{
+            background-color: var(--bg-color);
+            border-color:green  !important;
+        
+        }
+        #contact .btn {
+            border-color: var(--main-color) !important;
+            color: var(--main-color);
+}
+        #contact .btn:hover {
+            background-color: #17A2B8;
+        color: white;
+    }
+    #contact .link-light:hover {
+text-decoration: underline !important;
+    }
+            #contact .forms textarea::placeholder{
+            color: #B6B6B6;
+        }
+
+
+        #nme::placeholder,
+        #letter::placeholder {
+          color: #6C757D; /* White color for placeholder */
+          opacity: 1; /* Fully opaque */
+        }
+
+        

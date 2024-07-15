@@ -1,0 +1,141 @@
+
+
+
+
+
+
+
+
+
+// $(".openIcon").click(function () {
+//     if ($(".open").css("left") === "0px") {
+//         // Slide out
+//         $("li").removeClass("slide-top")
+//         $(".open").css("left", "-270px");
+
+//         $(".openIcon .fas").removeClass("fa-times-circle").addClass("fa-bars");
+//     } else {
+//         // Slide in
+//         $(".open").css("left", "0");
+//         $("li").addClass("slide-top");
+//         $(".openIcon .fas").removeClass("fa-bars").addClass("fa-times-circle");
+//     }
+// });
+
+//     let navbar = document.querySelector(".list-unstyled");
+//     let children = navbar.children;
+//     let links = navbar.querySelectorAll("a");
+
+//     for (let i = 0; i < children.length; i++) {
+//         let child = children[i];
+//         child.addEventListener("click", function () {
+//             for (let j = 0; j < children.length; j++) {
+//                 children[j].classList.remove("active");
+//             }
+//             this.classList.add("active");
+//         });
+//     }
+
+//     for (let i = 0; i < links.length; i++) {
+//         let link = links[i];
+//         link.addEventListener("click", function () {
+
+//             // Remove 'active' class from all sections and add 'd-none' to hide them
+
+//             let sections = document.querySelectorAll(".exist");
+
+//             // Get the href attribute, clean it, and show the corresponding section
+//             let href = this.getAttribute("href");
+//             let cleanHref = href.replace("#", ""); // Remove the '#' character
+//             let section = document.getElementById(cleanHref);
+//             for (let j = 0; j < sections.length; j++) {
+//                 sections[j].classList.add("d-none");
+//                 sections[j].classList.remove("exist");
+                
+//             }
+//             if (section) {
+//                 section.classList.remove("d-none");
+//                 section.classList.add("exist")
+//             }
+
+//             console.log("The cleaned href attribute of the clicked link is:", cleanHref);
+//         });
+//     }
+
+
+
+
+
+
+
+
+
+let Cats = document.getElementById("Cats");
+let disappears = document.querySelector(".disappeartwo");
+
+class CatsDetails {
+    async CatDetails(type) {
+        showLoading();
+        try {
+            const api = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${type}`);
+            const response = await api.json();
+            console.log(response);
+            return response.meals; // Access the first meal object in the meals array
+        } catch (error) {
+            console.error('Error fetching meal details:', error);
+            return null; // Return null or handle error as appropriate
+        } finally {
+            hideLoading();
+        }
+    }
+}
+
+export function addEventListenerst() {
+    document.querySelectorAll(".type").forEach(element => {
+        element.addEventListener("click", async function() {
+            let type = element.getAttribute("data-type");
+            console.log(type);
+            const z = new CatsDetails(); // Create a new instance of CatsDetails
+            const mealDetails = await z.CatDetails(type);
+            displays.renderCats(mealDetails);
+
+            Cats.classList.replace("d-none", "d-block");
+            disappears.classList.add("d-none");
+        });
+    });
+}
+
+class DisplayDetails {
+    constructor() {}
+
+    renderCats(meals) {
+        let cartoona = "";
+
+        if (meals && meals.length > 0) {
+            meals.forEach(meal => {
+                let Id = meal.idMeal;
+                let Title = meal.strMeal;
+                let img = meal.strMealThumb;
+       
+                cartoona += `                    
+                  <div class="col-md-3 details position-relative overflow-hidden" data-id="${Id}" >
+        
+        <img src="${img}" class="w-100 overflow-hidden rounded-1 pt-3" alt="">
+        <div class="layer rounded-1 pt-3">
+          <p> 
+<h1>${Title}</h1>
+          </p>
+        </div>
+      </div>`;
+            });
+            document.querySelector('#Cats .row').innerHTML = cartoona;
+            addEventListeners()
+
+
+        } else {
+            console.log("No meal details found");
+        }
+    }
+}
+
+let displays = new DisplayDetails();
